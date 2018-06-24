@@ -1,4 +1,4 @@
-package com.example.rifafauzi6.pergudangan;
+package com.example.budi.pergudangan;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

@@ -1,4 +1,4 @@
-package com.example.rifafauzi6.pergudangan;
+package com.example.budi.pergudangan;
 
 import org.junit.Test;
 
