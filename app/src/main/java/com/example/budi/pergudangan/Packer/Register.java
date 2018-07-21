@@ -69,6 +69,10 @@ public class Register extends AppCompatActivity {
             }
         });
 
+        //membuat back button toolbar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
     }
 
     private void checkRegister(final String nama, final String email, final String password, final String confirm_password) {

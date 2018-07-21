@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.daimajia.slider:library:1.1.5@aar'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'info.vividcode.android.zxing:capture-activity:2.3.0-1.+'
 }

@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,10 +24,17 @@
         </activity>
         <activity
             android:name=".Packer.HomeActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.SplashScreen"/>
         <activity android:name=".Packer.Register" />
-        <activity android:name=".PilihActivity" />
-        <activity android:name=".Packer.Login"></activity>
+        <activity android:name=".PilihActivity"
+            android:theme="@style/AppTheme.SplashScreen"/>
+        <activity android:name=".Packer.Login"
+            android:theme="@style/AppTheme.SplashScreen"/>
+        <activity android:name=".Packer.Profile.Profile"
+            android:label="Profile"/>
+        <activity android:name=".Packer.Scanner.Scanner"
+            android:label="Scanner"></activity>
     </application>
 
 </manifest>

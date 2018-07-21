@@ -19,6 +19,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.budi.pergudangan.Packer.Profile.Profile;
+import com.example.budi.pergudangan.Packer.Scanner.Scanner;
 import com.example.budi.pergudangan.R;
 import com.example.budi.pergudangan.Server.RequestHandler;
 import com.example.budi.pergudangan.Server.Server;
@@ -192,9 +194,12 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            // Handle the camera action
+            Intent profile = new Intent(HomeActivity.this, Profile.class);
+            profile.putExtra(TAG_ID, idx);
+            startActivity(profile);
         } else if (id == R.id.nav_scan) {
-
+            Intent scan = new Intent(getApplicationContext(), Scanner.class);
+            startActivity(scan);
         } else if (id == R.id.nav_detail) {
 
         } else if (id == R.id.nav_logout) {
