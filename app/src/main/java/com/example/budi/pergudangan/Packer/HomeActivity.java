@@ -1,4 +1,4 @@
-package com.example.budi.pergudangan;
+package com.example.budi.pergudangan.Packer;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -21,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.budi.pergudangan.R;
 import com.example.budi.pergudangan.Server.RequestHandler;
 import com.example.budi.pergudangan.Server.Server;
 import com.squareup.picasso.Picasso;
