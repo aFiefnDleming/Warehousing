@@ -110,7 +110,7 @@ public class LoginPacker extends AppCompatActivity {
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e(TAG, "LoginPacker Response: " + response.toString());
+                Log.e(TAG, "Login Response: " + response.toString());
                 hideDialog();
                 try {
                     JSONObject jObj = new JSONObject(response);
@@ -146,7 +146,7 @@ public class LoginPacker extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "LoginPacker Error: " + error.getMessage());
+                Log.e(TAG, "Login Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }

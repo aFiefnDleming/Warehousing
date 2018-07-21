@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.budi.pergudangan.Kubikasi.LoginKubikasi;
 import com.example.budi.pergudangan.Packer.LoginPacker;
 
 public class PilihActivity extends AppCompatActivity {
@@ -27,10 +28,10 @@ public class PilihActivity extends AppCompatActivity {
         startActivity(packer);
     }
 
-//    public void kubikasi (View view) {
-//        Intent kubikasi = new Intent(getApplicationContext(), LoginAdmin.class);
-//        startActivity(kubikasi);
-//    }
+    public void kubikasi (View view) {
+        Intent kubikasi = new Intent(getApplicationContext(), LoginKubikasi.class);
+        startActivity(kubikasi);
+    }
 
     @Override
     public void onBackPressed() {

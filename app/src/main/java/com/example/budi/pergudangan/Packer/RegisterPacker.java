@@ -16,6 +16,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.budi.pergudangan.Packer.Profile.Profile;
 import com.example.budi.pergudangan.R;
 import com.example.budi.pergudangan.Server.AppController;
 import com.example.budi.pergudangan.Server.Server;
@@ -139,11 +140,19 @@ public class RegisterPacker extends AppCompatActivity {
             pDialog.dismiss();
     }
 
+    //membuat fungsi back dengan mengirim data session
     @Override
     public void onBackPressed() {
         intent = new Intent(RegisterPacker.this, LoginPacker.class);
         finish();
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        Intent intent = new Intent(getApplicationContext(), LoginPacker.class);
+        startActivity(intent);
+        return true;
     }
 
 }
