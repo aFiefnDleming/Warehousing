@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.budi.pergudangan.Packer.Login;
+import com.example.budi.pergudangan.Packer.LoginPacker;
 
 public class PilihActivity extends AppCompatActivity {
 
@@ -18,12 +18,12 @@ public class PilihActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pilih);
 
-        sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(LoginPacker.my_shared_preferences, Context.MODE_PRIVATE);
 
     }
 
     public void packer (View view) {
-        Intent packer = new Intent(getApplicationContext(), Login.class);
+        Intent packer = new Intent(getApplicationContext(), LoginPacker.class);
         startActivity(packer);
     }
 

@@ -11,7 +11,6 @@ import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.budi.pergudangan.Packer.HomeActivity;
+import com.example.budi.pergudangan.Packer.HomePacker;
 import com.example.budi.pergudangan.R;
 import com.example.budi.pergudangan.Server.AppController;
 import com.example.budi.pergudangan.Server.RequestHandler;
@@ -64,7 +63,7 @@ public class Profile extends AppCompatActivity {
     int success;
     int PICK_IMAGE_REQUEST = 1;
     int bitmap_size = 60; // range 1 - 100
-    private static final String TAG = HomeActivity.class.getSimpleName();
+    private static final String TAG = HomePacker.class.getSimpleName();
     private String UPLOAD_URL = Server.URL + "upload.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
@@ -167,14 +166,14 @@ public class Profile extends AppCompatActivity {
     //membuat fungsi back dengan mengirim data session
     @Override
     public boolean onSupportNavigateUp() {
-        Intent intent = new Intent(Profile.this, HomeActivity.class);
+        Intent intent = new Intent(Profile.this, HomePacker.class);
         startActivity(intent);
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(Profile.this, HomeActivity.class);
+        Intent intent = new Intent(Profile.this, HomePacker.class);
         startActivity(intent);
     }
 
@@ -197,7 +196,7 @@ public class Profile extends AppCompatActivity {
                     JSONObject jObj = new JSONObject(response);
                     success = jObj.getInt(TAG_SUCCESS);
                     if (success == 1) {
-                        Intent intent = new Intent(Profile.this, HomeActivity.class);
+                        Intent intent = new Intent(Profile.this, HomePacker.class);
                         startActivity(intent);
                         Log.e("v Add", jObj.toString());
                         Toast.makeText(Profile.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();

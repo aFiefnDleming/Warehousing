@@ -32,7 +32,7 @@ import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class HomeActivity extends AppCompatActivity
+public class HomePacker extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private String urlp = Server.showProfil;
@@ -57,7 +57,7 @@ public class HomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //untuk mengambil data login session
-        sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(LoginPacker.my_shared_preferences, Context.MODE_PRIVATE);
         idx = sharedpreferences.getString(TAG_ID, null);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -82,7 +82,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(HomeActivity.this,"Tunggu",".....",false,false);
+                loading = ProgressDialog.show(HomePacker.this,"Tunggu",".....",false,false);
             }
 
             @Override
@@ -129,13 +129,13 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putBoolean(Login.session_status, false);
+                editor.putBoolean(LoginPacker.session_status, false);
                 editor.putString(TAG_ID, null);
                 editor.putString(TAG_NAMA, null);
                 editor.putString(TAG_EMAIL, null);
                 editor.putString(TAG_FOTO, null);
                 editor.commit();
-                Intent intent = new Intent(HomeActivity.this, Login.class);
+                Intent intent = new Intent(HomePacker.this, LoginPacker.class);
                 finish();
                 startActivity(intent);
             }
@@ -194,7 +194,7 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            Intent profile = new Intent(HomeActivity.this, Profile.class);
+            Intent profile = new Intent(HomePacker.this, Profile.class);
             profile.putExtra(TAG_ID, idx);
             startActivity(profile);
         } else if (id == R.id.nav_scan) {

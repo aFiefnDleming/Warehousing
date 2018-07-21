@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.budi.pergudangan.Packer.HomeActivity;
+import com.example.budi.pergudangan.Packer.HomePacker;
 import com.example.budi.pergudangan.R;
 
 import info.vividcode.android.zxing.CaptureActivity;
@@ -51,14 +51,14 @@ public class Scanner extends AppCompatActivity {
     //membuat fungsi back dengan mengirim data session
     @Override
     public boolean onSupportNavigateUp() {
-        Intent intent = new Intent(Scanner.this, HomeActivity.class);
+        Intent intent = new Intent(Scanner.this, HomePacker.class);
         startActivity(intent);
         return true;
     }
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(Scanner.this, HomeActivity.class);
+        Intent intent = new Intent(Scanner.this, HomePacker.class);
         startActivity(intent);
     }
 

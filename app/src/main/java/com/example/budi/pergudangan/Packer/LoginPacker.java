@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Login extends AppCompatActivity {
+public class LoginPacker extends AppCompatActivity {
 
     //untuk login session
     ProgressDialog pDialog;
@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
     int success;
     ConnectivityManager conMgr;
     private String url = Server.URL + "login.php";
-    private static final String TAG = Login.class.getSimpleName();
+    private static final String TAG = LoginPacker.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     public final static String TAG_ID = "id_user";
@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_packer);
 
         btn_login = findViewById(R.id.btn_login);
         txt_email = findViewById(R.id.input_email);
@@ -66,7 +66,7 @@ public class Login extends AppCompatActivity {
         email = sharedpreferences.getString(TAG_EMAIL, null);
 
         if (session) {
-            Intent intent = new Intent(Login.this, HomeActivity.class);
+            Intent intent = new Intent(LoginPacker.this, HomePacker.class);
             intent.putExtra(TAG_ID, id);
             intent.putExtra(TAG_EMAIL, email);
             finish();
@@ -98,7 +98,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void register (View v) {
-        Intent intent = new Intent(Login.this, Register.class);
+        Intent intent = new Intent(LoginPacker.this, RegisterPacker.class);
         startActivity(intent);
     }
 
@@ -110,7 +110,7 @@ public class Login extends AppCompatActivity {
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e(TAG, "Login Response: " + response.toString());
+                Log.e(TAG, "LoginPacker Response: " + response.toString());
                 hideDialog();
                 try {
                     JSONObject jObj = new JSONObject(response);
@@ -128,7 +128,7 @@ public class Login extends AppCompatActivity {
                         editor.putString(TAG_EMAIL, email);
                         editor.commit();
                         // Memanggil main activity
-                        Intent intent = new Intent(Login.this, HomeActivity.class);
+                        Intent intent = new Intent(LoginPacker.this, HomePacker.class);
                         intent.putExtra(TAG_ID, id);
                         intent.putExtra(TAG_EMAIL, email);
                         finish();
@@ -146,7 +146,7 @@ public class Login extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
+                Log.e(TAG, "LoginPacker Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }

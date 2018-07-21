@@ -26,7 +26,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Register extends AppCompatActivity {
+public class RegisterPacker extends AppCompatActivity {
 
     ProgressDialog pDialog;
     Button btn_register;
@@ -35,7 +35,7 @@ public class Register extends AppCompatActivity {
     int success;
     ConnectivityManager conMgr;
     private String url = Server.URL + "register.php";
-    private static final String TAG = Register.class.getSimpleName();
+    private static final String TAG = RegisterPacker.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     String tag_json_obj = "json_obj_req";
@@ -43,7 +43,7 @@ public class Register extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_register_packer);
 
         btn_register = findViewById(R.id.btn_signup);
         txt_nama = findViewById(R.id.input_name);
@@ -78,19 +78,19 @@ public class Register extends AppCompatActivity {
     private void checkRegister(final String nama, final String email, final String password, final String confirm_password) {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
-        pDialog.setMessage("Register ...");
+        pDialog.setMessage("RegisterPacker ...");
         showDialog();
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e(TAG, "Register Response: " + response.toString());
+                Log.e(TAG, "RegisterPacker Response: " + response.toString());
                 hideDialog();
                 try {
                     JSONObject jObj = new JSONObject(response);
                     success = jObj.getInt(TAG_SUCCESS);
                     // Check for error node in json
                     if (success == 1) {
-                        Intent login = new Intent(Register.this, Login.class);
+                        Intent login = new Intent(RegisterPacker.this, LoginPacker.class);
                         startActivity(login);
                         Log.e("Successfully Register!", jObj.toString());
                         Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
@@ -109,7 +109,7 @@ public class Register extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Login Error: " + error.getMessage());
+                Log.e(TAG, "LoginPacker Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }
@@ -141,7 +141,7 @@ public class Register extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        intent = new Intent(Register.this, Login.class);
+        intent = new Intent(RegisterPacker.this, LoginPacker.class);
         finish();
         startActivity(intent);
     }
