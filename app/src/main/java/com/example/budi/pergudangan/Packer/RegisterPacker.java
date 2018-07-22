@@ -54,7 +54,6 @@ public class RegisterPacker extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 String nama = txt_nama.getText().toString();
                 String email = txt_email.getText().toString();
                 String password = txt_password.getText().toString();

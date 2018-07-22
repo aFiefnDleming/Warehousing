@@ -29,8 +29,9 @@
             android:name=".Packer.HomePacker"
             android:label="Packer"
             android:theme="@style/AppTheme.SplashScreen" />
-        <activity android:name=".Packer.RegisterPacker"
-            android:label="Register Packer"/>
+        <activity
+            android:name=".Packer.RegisterPacker"
+            android:label="Register Packer" />
         <activity
             android:name=".PilihActivity"
             android:theme="@style/AppTheme.SplashScreen" />
@@ -63,10 +64,14 @@
         <activity
             android:name=".Kubikasi.LoginKubikasi"
             android:theme="@style/AppTheme.SplashScreen" />
-        <activity android:name=".Kubikasi.RegisterKubikasi"
-            android:label="Register Kubikasi"/>
-        <activity android:name=".Kubikasi.HomeKubikasi"
-            android:label="Kubikasi"/>
+        <activity
+            android:name=".Kubikasi.RegisterKubikasi"
+            android:label="Register Kubikasi" />
+        <activity
+            android:name=".Kubikasi.HomeKubikasi"
+            android:label="Kubikasi" />
+        <activity android:name=".Kubikasi.Barang.UpdateBarang"
+            android:label="Detail Barang"/>
     </application>
 
 </manifest>

@@ -75,7 +75,6 @@ public class LoginPacker extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
                 String email = txt_email.getText().toString();
                 String password = txt_password.getText().toString();
                 // mengecek kolom yang kosong
