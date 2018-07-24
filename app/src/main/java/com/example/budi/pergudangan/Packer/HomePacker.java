@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.budi.pergudangan.Login;
 import com.example.budi.pergudangan.Packer.Profile.Profile;
 import com.example.budi.pergudangan.Packer.Scanner.Scanner;
 import com.example.budi.pergudangan.R;
@@ -35,7 +36,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class HomePacker extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private String urlp = Server.showProfil;
+    private String urlp = Server.showProfilP;
 
     View header;
     TextView txt_nama, txt_email;
@@ -57,7 +58,7 @@ public class HomePacker extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //untuk mengambil data login session
-        sharedpreferences = getSharedPreferences(LoginPacker.my_shared_preferences, Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
         idx = sharedpreferences.getString(TAG_ID, null);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -129,13 +130,13 @@ public class HomePacker extends AppCompatActivity
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putBoolean(LoginPacker.session_status, false);
+                editor.putBoolean(Login.session_status, false);
                 editor.putString(TAG_ID, null);
                 editor.putString(TAG_NAMA, null);
                 editor.putString(TAG_EMAIL, null);
                 editor.putString(TAG_FOTO, null);
                 editor.commit();
-                Intent intent = new Intent(HomePacker.this, LoginPacker.class);
+                Intent intent = new Intent(HomePacker.this, Login.class);
                 finish();
                 startActivity(intent);
             }

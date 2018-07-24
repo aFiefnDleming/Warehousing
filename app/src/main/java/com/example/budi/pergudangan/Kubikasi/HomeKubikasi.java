@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.budi.pergudangan.Login;
 import com.example.budi.pergudangan.R;
 import com.example.budi.pergudangan.Server.AdapterBarang;
 import com.example.budi.pergudangan.Server.AppController;
@@ -64,7 +65,7 @@ public class HomeKubikasi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_kubikasi);
 
-        sharedpreferences = getSharedPreferences(LoginKubikasi.my_shared_preferences, Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
         idx = sharedpreferences.getString(TAG_ID, null);
 
         //menampilkan data lokasi dari database ke recycleview
@@ -130,13 +131,13 @@ public class HomeKubikasi extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-                editor.putBoolean(LoginKubikasi.session_status, false);
+                editor.putBoolean(Login.session_status, false);
                 editor.putString(TAG_ID, null);
                 editor.putString(TAG_NAMA, null);
                 editor.putString(TAG_EMAIL, null);
                 editor.putString(TAG_FOTO, null);
                 editor.commit();
-                Intent intent = new Intent(getApplicationContext(), LoginKubikasi.class);
+                Intent intent = new Intent(getApplicationContext(), Login.class);
                 finish();
                 startActivity(intent);
             }
@@ -177,4 +178,8 @@ public class HomeKubikasi extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

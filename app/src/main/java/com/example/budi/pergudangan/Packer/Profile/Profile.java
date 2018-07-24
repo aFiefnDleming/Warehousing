@@ -44,7 +44,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
-    private String urlp = Server.showProfil;
+    private String urlp = Server.showProfilP;
 
     Button simpan;
     ImageButton pilih;

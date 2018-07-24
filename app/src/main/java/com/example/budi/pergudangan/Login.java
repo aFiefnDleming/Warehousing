@@ -1,4 +1,4 @@
-package com.example.budi.pergudangan.Packer;
+package com.example.budi.pergudangan;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,8 +17,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.budi.pergudangan.PilihActivity;
-import com.example.budi.pergudangan.R;
+import com.example.budi.pergudangan.Kubikasi.HomeKubikasi;
+import com.example.budi.pergudangan.Packer.HomePacker;
 import com.example.budi.pergudangan.Server.AppController;
 import com.example.budi.pergudangan.Server.Server;
 
@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginPacker extends AppCompatActivity {
+public class Login extends AppCompatActivity {
 
     //untuk login session
     ProgressDialog pDialog;
@@ -37,23 +37,24 @@ public class LoginPacker extends AppCompatActivity {
     int success;
     ConnectivityManager conMgr;
     private String url = Server.URL + "login.php";
-    private static final String TAG = LoginPacker.class.getSimpleName();
+    private static final String TAG = Login.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     public final static String TAG_ID = "id_user";
     public final static String TAG_EMAIL = "email";
+    public final static String TAG_LEVEL = "level";
 
     String tag_json_obj = "json_obj_req";
     SharedPreferences sharedpreferences;
     Boolean session = false;
-    String id, email;
+    String id, email, level;
     public static final String my_shared_preferences = "my_shared_preferences";
     public static final String session_status = "session_status";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_packer);
+        setContentView(R.layout.activity_login);
 
         btn_login = findViewById(R.id.btn_login);
         txt_email = findViewById(R.id.input_email);
@@ -64,17 +65,30 @@ public class LoginPacker extends AppCompatActivity {
         session = sharedpreferences.getBoolean(session_status, false);
         id = sharedpreferences.getString(TAG_ID, null);
         email = sharedpreferences.getString(TAG_EMAIL, null);
+        level = sharedpreferences.getString(TAG_LEVEL, null);
 
         if (session) {
-            Intent intent = new Intent(LoginPacker.this, HomePacker.class);
-            intent.putExtra(TAG_ID, id);
-            intent.putExtra(TAG_EMAIL, email);
-            finish();
-            startActivity(intent);
+            if (level.equals("Packer")) {
+                Intent intent = new Intent(Login.this, HomePacker.class);
+                intent.putExtra(TAG_ID, id);
+                intent.putExtra(TAG_EMAIL, email);
+                intent.putExtra(TAG_LEVEL, level);
+                finish();
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(Login.this, HomeKubikasi.class);
+                intent.putExtra(TAG_ID, id);
+                intent.putExtra(TAG_EMAIL, email);
+                intent.putExtra(TAG_LEVEL, level);
+                finish();
+                startActivity(intent);
+            }
         }
+
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // TODO Auto-generated method stub
                 String email = txt_email.getText().toString();
                 String password = txt_password.getText().toString();
                 // mengecek kolom yang kosong
@@ -97,7 +111,7 @@ public class LoginPacker extends AppCompatActivity {
     }
 
     public void register (View v) {
-        Intent intent = new Intent(LoginPacker.this, RegisterPacker.class);
+        Intent intent = new Intent(Login.this, Register.class);
         startActivity(intent);
     }
 
@@ -118,6 +132,7 @@ public class LoginPacker extends AppCompatActivity {
                     if (success == 1) {
                         String id = jObj.getString(TAG_ID);
                         String email = jObj.getString(TAG_EMAIL);
+                        String level = jObj.getString(TAG_LEVEL);
                         Log.e("Successfully Login!", jObj.toString());
                         Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
                         // menyimpan login ke session
@@ -125,13 +140,26 @@ public class LoginPacker extends AppCompatActivity {
                         editor.putBoolean(session_status, true);
                         editor.putString(TAG_ID, id);
                         editor.putString(TAG_EMAIL, email);
+                        editor.putString(TAG_LEVEL, level);
                         editor.commit();
+
                         // Memanggil main activity
-                        Intent intent = new Intent(LoginPacker.this, HomePacker.class);
-                        intent.putExtra(TAG_ID, id);
-                        intent.putExtra(TAG_EMAIL, email);
-                        finish();
-                        startActivity(intent);
+                        if (level.equals("Packer")) {
+                            Intent intent = new Intent(Login.this, HomePacker.class);
+                            intent.putExtra(TAG_ID, id);
+                            intent.putExtra(TAG_EMAIL, email);
+                            intent.putExtra(TAG_LEVEL, level);
+                            finish();
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(Login.this, HomeKubikasi.class);
+                            intent.putExtra(TAG_ID, id);
+                            intent.putExtra(TAG_EMAIL, email);
+                            intent.putExtra(TAG_LEVEL, level);
+                            finish();
+                            startActivity(intent);
+                        }
+
                     } else if (success == 2) {
                         Toast.makeText(getApplicationContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
                     } else {
@@ -175,7 +203,7 @@ public class LoginPacker extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent pilih = new Intent(getApplicationContext(), PilihActivity.class);
-        startActivity(pilih);
+        moveTaskToBack(true);
     }
+
 }
