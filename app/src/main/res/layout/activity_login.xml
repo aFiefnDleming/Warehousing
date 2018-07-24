@@ -48,7 +48,7 @@
         android:layout_marginTop="20dip"
         android:text="Login"
         android:textAllCaps="false"
-        android:background="#64B5F6"
+        android:background="@drawable/bg_upload"
         android:textColor="@android:color/white" />
 
     <TextView
