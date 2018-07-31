@@ -268,6 +268,9 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/btn_update"
                 android:onClick="update"
+                android:textAllCaps="false"
+                android:background="@drawable/bg_upload"
+                android:textColor="@android:color/white"
                 android:text="Update"/>
 
             <Button
@@ -277,6 +280,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/delete"
+                android:textAllCaps="false"
+                android:background="@drawable/bg_upload"
+                android:textColor="@android:color/white"
                 android:text="Delete"/>
         </RelativeLayout>
 

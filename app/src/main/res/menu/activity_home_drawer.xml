@@ -10,16 +10,8 @@
             android:title="Profile" />
         <item
             android:id="@+id/nav_scan"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_scanner"
             android:title="Scan QR Code" />
-        <item
-            android:id="@+id/nav_detail"
-            android:icon="@drawable/ic_list"
-            android:title="Detail QR Code" />
-        <!--<item-->
-            <!--android:id="@+id/nav_manage"-->
-            <!--android:icon="@drawable/ic_menu_manage"-->
-            <!--android:title="Tools" />-->
     </group>
 
     <item android:title="Keluar">

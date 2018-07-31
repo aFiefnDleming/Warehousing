@@ -115,7 +115,7 @@ public class HomePacker extends AppCompatActivity
 
             txt_nama.setText(nama);
             txt_email.setText(email);
-            Picasso.with(this).load(foto).placeholder(R.drawable.ic_menu_camera).error(R.drawable.ic_menu_camera).into(user_picture);
+            Picasso.with(this).load(foto).placeholder(R.drawable.user).error(R.drawable.user).into(user_picture);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -178,8 +178,6 @@ public class HomePacker extends AppCompatActivity
         } else if (id == R.id.nav_scan) {
             Intent scan = new Intent(getApplicationContext(), Scanner.class);
             startActivity(scan);
-        } else if (id == R.id.nav_detail) {
-
         } else if (id == R.id.nav_logout) {
             logout();
         }

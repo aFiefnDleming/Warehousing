@@ -8,5 +8,7 @@ public class Server {
     public static final String showProfilK = URL + "kubikasi/get_profile.php?id_user=";
 
     //URL untuk kubikasi
-    public static final String URLK = "http://gudangku.pe.hu/android/kubikasi/";
+    public static final String URLK = URL + "kubikasi/";
+
+    public static final String URLP = URL + "packer/";
 }

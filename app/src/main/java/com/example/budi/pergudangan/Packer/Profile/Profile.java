@@ -64,7 +64,7 @@ public class Profile extends AppCompatActivity {
     int PICK_IMAGE_REQUEST = 1;
     int bitmap_size = 60; // range 1 - 100
     private static final String TAG = HomePacker.class.getSimpleName();
-    private String UPLOAD_URL = Server.URL + "upload.php";
+    private String UPLOAD_URL = Server.URLP + "upload.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     private String TAG_ID = "id_user";

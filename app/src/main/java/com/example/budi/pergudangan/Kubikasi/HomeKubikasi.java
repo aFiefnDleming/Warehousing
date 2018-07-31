@@ -5,6 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.annotation.ColorRes;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +24,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.example.budi.pergudangan.Kubikasi.Fragment.HomeFragment;
+import com.example.budi.pergudangan.Kubikasi.Fragment.ListFragment;
+import com.example.budi.pergudangan.Kubikasi.Fragment.ProfileFragment;
 import com.example.budi.pergudangan.Login;
 import com.example.budi.pergudangan.R;
 import com.example.budi.pergudangan.Server.AdapterBarang;
@@ -34,6 +43,10 @@ import java.util.List;
 
 public class HomeKubikasi extends AppCompatActivity {
 
+    private static final String SELECTED_ITEM = "arg_selected_item";
+    private BottomNavigationView mBottomNav;
+    private int mSelectedItem;
+
     //untuk login kubikasi
     SharedPreferences sharedpreferences;
     public static final String TAG_ID = "id_kubikasi";
@@ -41,24 +54,6 @@ public class HomeKubikasi extends AppCompatActivity {
     public final static String TAG_EMAIL = "email";
     public final static String TAG_FOTO = "foto";
     String idx;
-
-    //untuk menampilkan data list barang pada recyclerview
-    RecyclerView mRecyclerview;
-    RecyclerView.Adapter mAdapter;
-    RecyclerView.LayoutManager mManager;
-    List<ModelBarang> mItems;
-    ProgressDialog pd;
-    private String urld = Server.URLK + "getallbarang.php";
-    public static final String TAG_IDB = "id_barang";
-    public static final String TAG_NAMAB = "nama_barang";
-    public static final String TAG_LEBAR = "lebar";
-    public static final String TAG_PANJANG = "panjang";
-    public static final String TAG_TINGGI = "tinggi";
-    public static final String TAG_BERAT = "berat";
-    public static final String TAG_HARGA = "harga";
-    public static final String TAG_TUJUAN = "tujuan";
-    public static final String TAG_QTY = "qty";
-    public static final String TAG_STOCK = "stock";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,59 +63,59 @@ public class HomeKubikasi extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(Login.my_shared_preferences, Context.MODE_PRIVATE);
         idx = sharedpreferences.getString(TAG_ID, null);
 
-        //menampilkan data lokasi dari database ke recycleview
-        mRecyclerview = findViewById(R.id.recyclerviewTemp);
-        pd = new ProgressDialog(HomeKubikasi.this);
-        mItems = new ArrayList<>();
-        loadJson();
-        mManager = new LinearLayoutManager(HomeKubikasi.this,LinearLayoutManager.VERTICAL,false);
-        mRecyclerview.setLayoutManager(mManager);
-        mAdapter = new AdapterBarang(HomeKubikasi.this,mItems);
-        mRecyclerview.setAdapter(mAdapter);
+        mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
+        mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                selectFragment(item);
+                return true;
+            }
+        });
+
+        MenuItem selectedItem;
+        if (savedInstanceState != null) {
+            mSelectedItem = savedInstanceState.getInt(SELECTED_ITEM, 0);
+            selectedItem = mBottomNav.getMenu().findItem(mSelectedItem);
+        } else {
+            selectedItem = mBottomNav.getMenu().getItem(0);
+        }
+        selectFragment(selectedItem);
 
     }
 
-    //melakukan pengambilan data dari database
-    private void loadJson() {
-        pd.setMessage("Mengambil Data");
-        pd.setCancelable(false);
-        pd.show();
-        JsonArrayRequest reqData = new JsonArrayRequest(Request.Method.POST, urld,null, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                pd.cancel();
-                Log.d("volley","response : " + response.toString());
-                for(int i = 0 ; i < response.length(); i++)
-                {
-                    try {
-                        JSONObject data = response.getJSONObject(i);
-                        ModelBarang md = new ModelBarang();
-                        md.setIdb(data.getString(TAG_IDB));
-                        md.setNamab(data.getString(TAG_NAMAB));
-                        md.setLebar(data.getString(TAG_LEBAR));
-                        md.setPanjang(data.getString(TAG_PANJANG));
-                        md.setTinggi(data.getString(TAG_TINGGI));
-                        md.setBerat(data.getString(TAG_BERAT));
-                        md.setHarga(data.getString(TAG_HARGA));
-                        md.setTujuan(data.getString(TAG_TUJUAN));
-                        md.setQty(data.getString(TAG_QTY));
-                        md.setStock(data.getString(TAG_STOCK));
-                        mItems.add(md);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                mAdapter.notifyDataSetChanged();
-            }
-        },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        pd.cancel();
-                        Log.d("volley", "error : " + error.getMessage());
-                    }
-                });
-        AppController.getInstance().addToRequestQueue(reqData);
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putInt(SELECTED_ITEM, mSelectedItem);
+        super.onSaveInstanceState(outState);
+    }
+
+    private void selectFragment(MenuItem item) {
+        Fragment frag = null;
+        // init corresponding fragment
+        switch (item.getItemId()) {
+            case R.id.menu_home:
+                frag = new HomeFragment();
+                break;
+            case R.id.menu_list:
+                frag = new ListFragment();
+                break;
+            case R.id.menu_profile:
+                frag = new ProfileFragment();
+                break;
+        }
+
+        loadFragment(frag);
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.container, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
     }
 
     private void logout(){
@@ -180,6 +175,12 @@ public class HomeKubikasi extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        MenuItem homeItem = mBottomNav.getMenu().getItem(0);
+        if (mSelectedItem != homeItem.getItemId()) {
+            // select home item
+            selectFragment(homeItem);
+        } else {
+            moveTaskToBack(true);
+        }
     }
 }
