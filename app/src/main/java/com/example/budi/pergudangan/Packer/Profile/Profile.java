@@ -44,12 +44,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
 
-    private String urlp = Server.showProfilP;
-
+    //mendeklarasikan variabel dengan class
     Button simpan;
     ImageButton pilih;
     CircleImageView imageView;
-    EditText txt_id, txt_nama, txt_email;
+    EditText txt_id, txt_nama, txt_email, txt_nohp, txt_alamat;
     Bitmap bitmap, decoded;
     ConnectivityManager conMgr;
 
@@ -58,6 +57,8 @@ public class Profile extends AppCompatActivity {
     private String TAG_NAMA = "nama";
     private String TAG_EMAIL = "email";
     private String TAG_FOTO = "foto";
+
+    private String url = Server.showProfilP;
 
     //untuk upload foto serta edit profile
     int success;
@@ -115,7 +116,6 @@ public class Profile extends AppCompatActivity {
 
         txt_id.setText(id);
         getUserProfile();
-
     }
 
     private void getUserProfile(){
@@ -137,7 +137,7 @@ public class Profile extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequestParam(urlp,id);
+                String s = rh.sendGetRequestParam(url,id);
                 return s;
             }
         }
@@ -156,7 +156,7 @@ public class Profile extends AppCompatActivity {
 
             txt_nama.setText(nama);
             txt_email.setText(email);
-            Picasso.with(this).load(foto).placeholder(R.drawable.ic_user).error(R.drawable.ic_user).into(imageView);
+            Picasso.with(this).load(foto).placeholder(R.drawable.user).error(R.drawable.user).into(imageView);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -286,5 +286,4 @@ public class Profile extends AppCompatActivity {
         }
         return Bitmap.createScaledBitmap(image, width, height, true);
     }
-
 }
