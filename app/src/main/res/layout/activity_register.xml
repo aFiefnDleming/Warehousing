@@ -14,9 +14,9 @@
         android:paddingRight="24dp">
 
         <ImageView
-            android:src="@mipmap/ic_launcher"
             android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo2000"
             android:layout_marginBottom="24dp"
             android:layout_gravity="center_horizontal" />
 

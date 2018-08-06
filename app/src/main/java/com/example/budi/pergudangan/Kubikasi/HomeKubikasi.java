@@ -19,6 +19,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -42,6 +43,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeKubikasi extends AppCompatActivity {
+
+    private static final int TIME_LIMIT = 1800;
+    private static long backPressed;
 
     private static final String SELECTED_ITEM = "arg_selected_item";
     private BottomNavigationView mBottomNav;
@@ -175,12 +179,16 @@ public class HomeKubikasi extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        MenuItem homeItem = mBottomNav.getMenu().getItem(0);
-        if (mSelectedItem != homeItem.getItemId()) {
-            // select home item
-            selectFragment(homeItem);
+        if (TIME_LIMIT + backPressed > System.currentTimeMillis()) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+            startActivity(intent);
+            finish();
+            System.exit(0);
         } else {
-            moveTaskToBack(true);
+            Toast.makeText(this, "Press back again to exit.", Toast.LENGTH_SHORT).show();
         }
+        backPressed = System.currentTimeMillis();
     }
 }

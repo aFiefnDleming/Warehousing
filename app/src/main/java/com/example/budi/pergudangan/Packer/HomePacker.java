@@ -18,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.budi.pergudangan.Login;
 import com.example.budi.pergudangan.Packer.Profile.Profile;
@@ -35,6 +36,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomePacker extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private static final int TIME_LIMIT = 1800;
+    private static long backPressed;
 
     private String urlp = Server.showProfilP;
 
@@ -159,10 +163,17 @@ public class HomePacker extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (TIME_LIMIT + backPressed > System.currentTimeMillis()) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+            startActivity(intent);
+            finish();
+            System.exit(0);
         } else {
-            moveTaskToBack(true);
-            //membuat method tombol keluar dari aplikasi
+            Toast.makeText(this, "Press back again to exit.", Toast.LENGTH_SHORT).show();
         }
+        backPressed = System.currentTimeMillis();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
