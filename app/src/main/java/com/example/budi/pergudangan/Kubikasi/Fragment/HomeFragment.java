@@ -25,7 +25,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Objects.requireNonNull(getActivity()).setTitle("Home");
+        Objects.requireNonNull(getActivity()).setTitle("Kubikasi");
     }
 
 
