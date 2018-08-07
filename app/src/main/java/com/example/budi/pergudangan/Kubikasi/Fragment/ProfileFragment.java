@@ -28,8 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.budi.pergudangan.Packer.HomePacker;
-import com.example.budi.pergudangan.Packer.Profile.Profile;
+import com.example.budi.pergudangan.Kubikasi.HomeKubikasi;
 import com.example.budi.pergudangan.R;
 import com.example.budi.pergudangan.Server.AppController;
 import com.example.budi.pergudangan.Server.RequestHandler;
@@ -76,8 +75,8 @@ public class ProfileFragment extends Fragment {
     int success;
     int PICK_IMAGE_REQUEST = 1;
     int bitmap_size = 60; // range 1 - 100
-    private static final String TAG = HomePacker.class.getSimpleName();
-    private String UPLOAD_URL = Server.URLP + "upload.php";
+    private static final String TAG = HomeKubikasi.class.getSimpleName();
+    private String UPLOAD_URL = Server.URLK + "upload.php";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     String TAG_ID = "id_user";
@@ -120,18 +119,18 @@ public class ProfileFragment extends Fragment {
         });
 
         //untuk melakukan update data serta upload foto/gambar
-//        simpan.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                conMgr = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);{
-//                    if (conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isAvailable() && conMgr.getActiveNetworkInfo().isConnected()) {
-//                        uploadImage();
-//                    } else {
-//                        Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
-//                    }
-//                }
-//            }
-//        });
+        simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                conMgr = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);{
+                    if (conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isAvailable() && conMgr.getActiveNetworkInfo().isConnected()) {
+                        uploadImage();
+                    } else {
+                        Toast.makeText(getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
 
         txt_id.setText(id);
         getUserProfile();
@@ -184,68 +183,68 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-//    public String getStringImage(Bitmap bmp) {
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, baos);
-//        byte[] imageBytes = baos.toByteArray();
-//        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-//        return encodedImage;
-//    }
-//
-//    private void uploadImage() {
-//        //menampilkan progress dialog
-//        final ProgressDialog loading = ProgressDialog.show(getContext(), "Uploading...", "Please wait...", false, false);
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                Log.e(TAG, "Response: " + response.toString());
-//                try {
-//                    JSONObject jObj = new JSONObject(response);
-//                    success = jObj.getInt(TAG_SUCCESS);
-//                    if (success == 1) {
-//                        Intent intent = new Intent(getContext(), HomePacker.class);
-//                        startActivity(intent);
-//                        Log.e("v Add", jObj.toString());
-//                        Toast.makeText(getContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
-//                    } else {
-//                        Toast.makeText(getContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//                //menghilangkan progress dialog
-//                loading.dismiss();
-//            }
-//        },
-//                new Response.ErrorListener() {
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//                        //menghilangkan progress dialog
-//                        loading.dismiss();
-//
-//                        //menampilkan toast
-//                        Toast.makeText(getContext(), "Silahkan pilih foto profil terlebih dahulu", Toast.LENGTH_LONG).show();
-////                        Log.e(TAG, error.getMessage().toString());
-//                    }
-//                }) {
-//            @Override
-//            protected Map<String, String> getParams() {
-//                //membuat parameters
-//                Map<String, String> params = new HashMap<String, String>();
-//                //menambah parameter yang di kirim ke web servis
-//                params.put(TAG_ID, txt_id.getText().toString().trim());
-//                params.put(TAG_FOTO, getStringImage(decoded));
-//                params.put(TAG_NAMA, txt_nama.getText().toString().trim());
-//                params.put(TAG_EMAIL, txt_email.getText().toString().trim());
-//                //kembali ke parameters
-//                Log.e(TAG, "" + params);
-//                return params;
-//            }
-//        };
-//
-//        AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
-//    }
+    public String getStringImage(Bitmap bmp) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+    private void uploadImage() {
+        //menampilkan progress dialog
+        final ProgressDialog loading = ProgressDialog.show(getContext(), "Uploading...", "Please wait...", false, false);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "Response: " + response.toString());
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    success = jObj.getInt(TAG_SUCCESS);
+                    if (success == 1) {
+                        Intent intent = new Intent(getContext(), HomeKubikasi.class);
+                        startActivity(intent);
+                        Log.e("v Add", jObj.toString());
+                        Toast.makeText(getContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getContext(), jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                //menghilangkan progress dialog
+                loading.dismiss();
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //menghilangkan progress dialog
+                        loading.dismiss();
+
+                        //menampilkan toast
+                        Toast.makeText(getContext(), "Silahkan pilih foto profil terlebih dahulu", Toast.LENGTH_LONG).show();
+//                        Log.e(TAG, error.getMessage().toString());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                //membuat parameters
+                Map<String, String> params = new HashMap<String, String>();
+                //menambah parameter yang di kirim ke web servis
+                params.put(TAG_ID, txt_id.getText().toString().trim());
+                params.put(TAG_FOTO, getStringImage(decoded));
+                params.put(TAG_NAMA, txt_nama.getText().toString().trim());
+                params.put(TAG_EMAIL, txt_email.getText().toString().trim());
+                //kembali ke parameters
+                Log.e(TAG, "" + params);
+                return params;
+            }
+        };
+
+        AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
+    }
 
     private void showFileChooser() {
         Intent intent = new Intent();
@@ -254,43 +253,43 @@ public class ProfileFragment extends Fragment {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
-//            Uri filePath = data.getData();
-//            try {
-//                //mengambil Gambar dari Gallery
-//                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-//                // 512 adalah resolusi tertinggi setelah image di resize, bisa di ganti.
-//                setToImageView(getResizedBitmap(bitmap, 512));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-//
-//    private void setToImageView(Bitmap bmp) {
-//        //compress image
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, bytes);
-//        decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(bytes.toByteArray()));
-//        //menampilkan gambar yang dipilih dari camera/gallery ke ImageView
-//        imageView.setImageBitmap(decoded);
-//    }
-//
-//    // fungsi resize image
-//    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
-//        int width = image.getWidth();
-//        int height = image.getHeight();
-//        float bitmapRatio = (float) width / (float) height;
-//        if (bitmapRatio > 1) {
-//            width = maxSize;
-//            height = (int) (width / bitmapRatio);
-//        } else {
-//            height = maxSize;
-//            width = (int) (height * bitmapRatio);
-//        }
-//        return Bitmap.createScaledBitmap(image, width, height, true);
-//    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            try {
+                //mengambil Gambar dari Gallery
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+                // 512 adalah resolusi tertinggi setelah image di resize, bisa di ganti.
+                setToImageView(getResizedBitmap(bitmap, 512));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void setToImageView(Bitmap bmp) {
+        //compress image
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, bytes);
+        decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(bytes.toByteArray()));
+        //menampilkan gambar yang dipilih dari camera/gallery ke ImageView
+        imageView.setImageBitmap(decoded);
+    }
+
+    // fungsi resize image
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
 }
