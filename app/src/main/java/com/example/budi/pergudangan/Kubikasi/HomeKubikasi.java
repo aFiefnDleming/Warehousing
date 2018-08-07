@@ -19,6 +19,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -53,7 +55,7 @@ public class HomeKubikasi extends AppCompatActivity {
 
     //untuk login kubikasi
     SharedPreferences sharedpreferences;
-    public static final String TAG_ID = "id_kubikasi";
+    public static final String TAG_ID = "id_user";
     public final static String TAG_NAMA = "nama";
     public final static String TAG_EMAIL = "email";
     public final static String TAG_FOTO = "foto";
@@ -105,6 +107,9 @@ public class HomeKubikasi extends AppCompatActivity {
                 break;
             case R.id.menu_profile:
                 frag = new ProfileFragment();
+                Bundle mBundle = new Bundle();
+                mBundle.putString(TAG_ID, idx);
+                frag.setArguments(mBundle);
                 break;
         }
 
