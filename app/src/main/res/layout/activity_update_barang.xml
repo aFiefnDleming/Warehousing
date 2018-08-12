@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffff"
     tools:context=".Kubikasi.Barang.UpdateBarang">
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -130,10 +131,27 @@
                 android:layout_row="13"/>
 
             <TextView
-                android:id="@+id/tujuanText"
+                android:id="@+id/tglText"
                 android:layout_column="1"
                 android:layout_gravity="left"
                 android:layout_row="15"
+                android:text="Tanggal Masuk "/>
+
+            <EditText
+                android:id="@+id/tgl"
+                android:layout_width="217dp"
+                android:textSize="15sp"
+                android:singleLine="true"
+                android:layout_column="3"
+                android:focusable="false"
+                android:layout_gravity="left"
+                android:layout_row="15"/>
+
+            <TextView
+                android:id="@+id/tujuanText"
+                android:layout_column="1"
+                android:layout_gravity="left"
+                android:layout_row="17"
                 android:text="Tujuan "/>
 
             <Spinner
@@ -143,13 +161,13 @@
                 android:singleLine="true"
                 android:layout_column="3"
                 android:layout_gravity="left"
-                android:layout_row="15"/>
+                android:layout_row="17"/>
 
             <TextView
                 android:id="@+id/qtyText"
                 android:layout_column="1"
                 android:layout_gravity="left"
-                android:layout_row="17"
+                android:layout_row="19"
                 android:text="Jumlah "/>
 
             <EditText
@@ -159,23 +177,24 @@
                 android:singleLine="true"
                 android:layout_column="3"
                 android:layout_gravity="left"
-                android:layout_row="17"/>
+                android:layout_row="19"/>
 
             <TextView
-                android:id="@+id/stockText"
+                android:id="@+id/totalText"
                 android:layout_column="1"
                 android:layout_gravity="left"
-                android:layout_row="19"
-                android:text="Stock "/>
+                android:layout_row="21"
+                android:text="Total "/>
 
-            <Spinner
-                android:id="@+id/stock"
+            <EditText
+                android:id="@+id/total"
                 android:layout_width="217dp"
                 android:textSize="15sp"
+                android:focusable="false"
                 android:singleLine="true"
                 android:layout_column="3"
                 android:layout_gravity="left"
-                android:layout_row="19"/>
+                android:layout_row="21"/>
 
             <Space
                 android:layout_width="21dp"
@@ -248,10 +267,16 @@
                 android:layout_row="18" />
             <Space
                 android:layout_width="1dp"
+                android:layout_height="10dp"
+                android:layout_column="0"
+                android:layout_gravity="fill_horizontal"
+                android:layout_row="20" />
+            <Space
+                android:layout_width="1dp"
                 android:layout_height="40dp"
                 android:layout_column="0"
                 android:layout_gravity="fill_horizontal"
-                android:layout_row="19" />
+                android:layout_row="21" />
 
         </GridLayout>
 

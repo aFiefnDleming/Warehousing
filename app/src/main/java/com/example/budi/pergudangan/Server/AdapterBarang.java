@@ -43,9 +43,10 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.HolderBara
         holder.tvtinggi.setText(md.getTinggi());
         holder.tvberat.setText(md.getBerat());
         holder.tvharga.setText(md.getHarga());
+        holder.tvtgl.setText(md.getTgl_masuk());
         holder.tvtujuan.setText(md.getTujuan());
         holder.tvqty.setText(md.getQty());
-        holder.tvstock.setText(md.getStock());
+        holder.tvtotal.setText(md.getTotal());
 
         holder.cd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,9 +59,10 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.HolderBara
                 i.putExtra("tinggi", mItems.get(position).getTinggi());
                 i.putExtra("berat", mItems.get(position).getBerat());
                 i.putExtra("harga", mItems.get(position).getHarga());
+                i.putExtra("tgl_masuk", mItems.get(position).getTgl_masuk());
                 i.putExtra("tujuan", mItems.get(position).getTujuan());
                 i.putExtra("qty", mItems.get(position).getQty());
-                i.putExtra("stock", mItems.get(position).getStock());
+                i.putExtra("total", mItems.get(position).getTotal());
                 v.getContext().startActivity(i);
             }
         });
@@ -75,7 +77,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.HolderBara
     }
 
     class HolderBarang extends RecyclerView.ViewHolder {
-        TextView tvidb, tvnamab, tvlebar, tvpanjang, tvtinggi, tvberat, tvharga, tvtujuan, tvqty, tvstock;
+        TextView tvidb, tvnamab, tvlebar, tvpanjang, tvtinggi, tvberat, tvharga, tvtgl, tvtujuan, tvqty, tvtotal;
         ModelBarang md;
         CardView cd;
         public  HolderBarang (View view)
@@ -88,9 +90,10 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.HolderBara
             tvtinggi = view.findViewById(R.id.tinggiValue);
             tvberat = view.findViewById(R.id.beratValue);
             tvharga = view.findViewById(R.id.hargaValue);
+            tvtgl = view.findViewById(R.id.tglValue);
             tvtujuan = view.findViewById(R.id.tujuanValue);
             tvqty = view.findViewById(R.id.qtyValue);
-            tvstock = view.findViewById(R.id.stockValue);
+            tvtotal = view.findViewById(R.id.totalValue);
             cd = view.findViewById(R.id.cardview);
         }
     }

@@ -2,9 +2,9 @@ package com.example.budi.pergudangan.Server;
 
 public class ModelBarang {
 
-    String idb, namab, lebar, panjang, tinggi, berat, harga, tujuan, qty, stock;
+    String idb, namab, lebar, panjang, tinggi, berat, harga, tgl_masuk, tujuan, qty, total;
     public ModelBarang(){}
-    public ModelBarang(String idb, String namab, String lebar, String panjang, String tinggi, String berat, String harga, String tujuan, String qty, String stock) {
+    public ModelBarang(String idb, String namab, String lebar, String panjang, String tinggi, String berat, String harga, String tgl_masuk, String tujuan, String qty, String total) {
 
         this.idb = idb;
         this.namab = namab;
@@ -13,9 +13,10 @@ public class ModelBarang {
         this.tinggi = tinggi;
         this.berat = berat;
         this.harga = harga;
+        this.tgl_masuk = tgl_masuk;
         this.tujuan = tujuan;
         this.qty = qty;
-        this.stock = stock;
+        this.total = total;
     }
 
     public String getIdb() {
@@ -74,6 +75,14 @@ public class ModelBarang {
         this.harga = harga;
     }
 
+    public String getTgl_masuk() {
+        return tgl_masuk;
+    }
+
+    public void setTgl_masuk(String tgl_masuk) {
+        this.tgl_masuk = tgl_masuk;
+    }
+
     public String getTujuan() {
         return tujuan;
     }
@@ -90,12 +99,12 @@ public class ModelBarang {
         this.qty = qty;
     }
 
-    public String getStock() {
-        return stock;
+    public String getTotal() {
+        return total;
     }
 
-    public void setStock(String stock) {
-        this.stock = stock;
+    public void setTotal(String total) {
+        this.total = total;
     }
 
 }

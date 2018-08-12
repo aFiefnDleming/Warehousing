@@ -49,9 +49,10 @@ public class ListFragment extends Fragment {
     public static final String TAG_TINGGI = "tinggi";
     public static final String TAG_BERAT = "berat";
     public static final String TAG_HARGA = "harga";
+    public static final String TAG_TGL = "tgl_masuk";
     public static final String TAG_TUJUAN = "tujuan";
     public static final String TAG_QTY = "qty";
-    public static final String TAG_STOCK = "stock";
+    public static final String TAG_TOTAL = "total";
 
     public ListFragment() {
         // Required empty public constructor
@@ -104,9 +105,10 @@ public class ListFragment extends Fragment {
                         md.setTinggi(data.getString(TAG_TINGGI));
                         md.setBerat(data.getString(TAG_BERAT));
                         md.setHarga(data.getString(TAG_HARGA));
+                        md.setTgl_masuk(data.getString(TAG_TGL));
                         md.setTujuan(data.getString(TAG_TUJUAN));
                         md.setQty(data.getString(TAG_QTY));
-                        md.setStock(data.getString(TAG_STOCK));
+                        md.setTotal(data.getString(TAG_TOTAL));
                         mItems.add(md);
                     } catch (JSONException e) {
                         e.printStackTrace();

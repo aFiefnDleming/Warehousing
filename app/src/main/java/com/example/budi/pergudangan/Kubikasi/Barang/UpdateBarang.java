@@ -34,8 +34,8 @@ import java.util.Map;
 
 public class UpdateBarang extends AppCompatActivity {
 
-    EditText tvidb, tvnamab, tvlebar, tvpanjang, tvtinggi, tvberat, tvharga, tvqty;
-    Spinner spTujuan, spStock;
+    EditText tvidb, tvnamab, tvlebar, tvpanjang, tvtinggi, tvberat, tvharga, tvTgl, tvqty, tvTotal;
+    Spinner spTujuan;
 
     //untuk delete barang
     private String urld = Server.URLK + "delete_barang.php";
@@ -63,9 +63,10 @@ public class UpdateBarang extends AppCompatActivity {
         tvtinggi = findViewById(R.id.tinggi);
         tvberat = findViewById(R.id.berat);
         tvharga = findViewById(R.id.harga);
+        tvTgl = findViewById(R.id.tgl);
         spTujuan = findViewById(R.id.tujuan);
         tvqty = findViewById(R.id.qty);
-        spStock = findViewById(R.id.stock);
+        tvTotal = findViewById(R.id.total);
 
         tvidb.setText(getIntent().getStringExtra("id_barang"));
         tvnamab.setText(getIntent().getStringExtra("nama_barang"));
@@ -74,9 +75,10 @@ public class UpdateBarang extends AppCompatActivity {
         tvtinggi.setText(getIntent().getStringExtra("tinggi"));
         tvberat.setText(getIntent().getStringExtra("berat"));
         tvharga.setText(getIntent().getStringExtra("harga"));
+        tvTgl.setText(getIntent().getStringExtra("tgl_masuk"));
 //        spTujuan.setText(getIntent().getStringExtra("tujuan"));
         tvqty.setText(getIntent().getStringExtra("qty"));
-//        spStock.setText(getIntent().getStringExtra("stock"));
+        tvTotal.setText(getIntent().getStringExtra("total"));
 
         pdd = new ProgressDialog(UpdateBarang.this);
 
@@ -85,20 +87,14 @@ public class UpdateBarang extends AppCompatActivity {
         tujuan.add("Paster");
         tujuan.add("Cimahi");
 
-        List<String> stock = new ArrayList<>();
-        stock.add("Ada");
-        stock.add("Kosong");
-
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tujuan);
-        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, stock);
 
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
         spTujuan.setAdapter(dataAdapter);
-        spStock.setAdapter(dataAdapter1);
 
         //membuat back button toolbar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -116,18 +112,17 @@ public class UpdateBarang extends AppCompatActivity {
         String harga = tvharga.getText().toString();
         String tujuan = spTujuan.getSelectedItem().toString();
         String qty = tvqty.getText().toString();
-        String stock = spStock.getSelectedItem().toString();
 
         conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);{
             if (conMgr.getActiveNetworkInfo() != null && conMgr.getActiveNetworkInfo().isAvailable() && conMgr.getActiveNetworkInfo().isConnected()) {
-                updateLokasi(idb, namab,lebar, panjang, tinggi, berat, harga, tujuan, qty, stock);
+                updateLokasi(idb, namab,lebar, panjang, tinggi, berat, harga, tujuan, qty);
             } else {
                 Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void updateLokasi (final String idb, final String namab, final String lebar, final String panjang, final String tinggi, final String berat, final String harga, final String tujuan, final String qty, final String stock) {
+    private void updateLokasi (final String idb, final String namab, final String lebar, final String panjang, final String tinggi, final String berat, final String harga, final String tujuan, final String qty) {
         pdu = new ProgressDialog(this);
         pdu.setCancelable(false);
         pdu.setMessage("Update ...");
@@ -175,7 +170,6 @@ public class UpdateBarang extends AppCompatActivity {
                 params.put("harga", harga);
                 params.put("tujuan", tujuan);
                 params.put("qty", qty);
-                params.put("stock", stock);
                 return params;
             }
         };

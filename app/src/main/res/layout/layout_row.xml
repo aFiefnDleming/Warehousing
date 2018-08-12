@@ -109,43 +109,56 @@
             android:layout_row="13"/>
 
         <TextView
-            android:id="@+id/tujuanText"
+            android:id="@+id/tglText"
             android:layout_column="1"
             android:layout_gravity="left"
             android:layout_row="15"
+            android:text="Tanggal Masuk "/>
+
+        <TextView
+            android:id="@+id/tglValue"
+            android:layout_column="3"
+            android:layout_gravity="left"
+            android:layout_row="15"/>
+
+        <TextView
+            android:id="@+id/tujuanText"
+            android:layout_column="1"
+            android:layout_gravity="left"
+            android:layout_row="17"
             android:text="Tujuan "/>
 
         <TextView
             android:id="@+id/tujuanValue"
             android:layout_column="3"
             android:layout_gravity="left"
-            android:layout_row="15"/>
+            android:layout_row="17"/>
 
         <TextView
             android:id="@+id/qtyText"
             android:layout_column="1"
             android:layout_gravity="left"
-            android:layout_row="17"
+            android:layout_row="19"
             android:text="Jumlah "/>
 
         <TextView
             android:id="@+id/qtyValue"
             android:layout_column="3"
             android:layout_gravity="left"
-            android:layout_row="17"/>
+            android:layout_row="19"/>
 
         <TextView
-            android:id="@+id/stockText"
+            android:id="@+id/totalText"
             android:layout_column="1"
             android:layout_gravity="left"
-            android:layout_row="19"
-            android:text="Stock "/>
+            android:layout_row="21"
+            android:text="Total Harga "/>
 
         <TextView
-            android:id="@+id/stockValue"
+            android:id="@+id/totalValue"
             android:layout_column="3"
             android:layout_gravity="left"
-            android:layout_row="19"/>
+            android:layout_row="21"/>
 
         <Space
             android:layout_width="21dp"
@@ -218,10 +231,16 @@
             android:layout_row="18" />
         <Space
             android:layout_width="1dp"
+            android:layout_height="10dp"
+            android:layout_column="0"
+            android:layout_gravity="fill_horizontal"
+            android:layout_row="20" />
+        <Space
+            android:layout_width="1dp"
             android:layout_height="40dp"
             android:layout_column="0"
             android:layout_gravity="fill_horizontal"
-            android:layout_row="19" />
+            android:layout_row="21" />
 
     </GridLayout>
 
