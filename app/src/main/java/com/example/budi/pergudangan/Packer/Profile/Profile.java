@@ -48,12 +48,12 @@ public class Profile extends AppCompatActivity {
     Button simpan;
     ImageButton pilih;
     CircleImageView imageView;
-    EditText txt_id, txt_nama, txt_email, txt_nohp, txt_alamat;
+    EditText txt_id, txt_nama, txt_email;
     Bitmap bitmap, decoded;
     ConnectivityManager conMgr;
 
     //untuk mengambil data session saat login
-    String id, nama, email, foto;
+    String id;
     private String TAG_NAMA = "nama";
     private String TAG_EMAIL = "email";
     private String TAG_FOTO = "foto";

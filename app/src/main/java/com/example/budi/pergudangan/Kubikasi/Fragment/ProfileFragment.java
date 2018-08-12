@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.SensorManager;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -21,7 +20,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -64,7 +62,7 @@ public class ProfileFragment extends Fragment {
     ConnectivityManager conMgr;
 
     //untuk mengambil data session saat login
-    String id, nama, email, foto;
+    String id;
     private String TAG_NAMA = "nama";
     private String TAG_EMAIL = "email";
     private String TAG_FOTO = "foto";
