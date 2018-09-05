@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -86,6 +85,9 @@ public class UpdateBarang extends AppCompatActivity {
         List<String> tujuan = new ArrayList<String>();
         tujuan.add("Paster");
         tujuan.add("Cimahi");
+        tujuan.add("Setia Budi");
+        tujuan.add("Asia Afrika");
+        tujuan.add("Cibiru");
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tujuan);
