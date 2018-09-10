@@ -1,2 +1,1 @@
 # Pergudangan
-Aplikasi Pergudangan (Ongoing)
